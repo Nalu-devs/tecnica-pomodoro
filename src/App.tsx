@@ -1,12 +1,13 @@
 import './styles/theme.css';
 import './styles/global.css';
+import { Heading } from './components/Heading';
 
 export function App() {
     console.log("Hello word");
     //o tsx não retorna mais de um elemento, ele precisa estar com um elemento pai, por exemplo a div, porem pode ser <></> vazio
     return (
         <>
-            <h1>Olá mundo!</h1>
+            <Heading/>
             <p>Sejam bem vindos ao meu primeiro app pelo react</p>
         </>);
 }

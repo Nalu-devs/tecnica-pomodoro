@@ -1,3 +1,6 @@
+import './styles/theme.css';
+import './styles/global.css';
+
 export function App() {
     console.log("Hello word");
     //o tsx não retorna mais de um elemento, ele precisa estar com um elemento pai, por exemplo a div, porem pode ser <></> vazio

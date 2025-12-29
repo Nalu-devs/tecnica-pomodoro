@@ -8,9 +8,6 @@ export function App() {
     return (
         <>
             <Heading>Ola mundo 1</Heading>
-            <Heading>Ola mundo 2</Heading>
-            <Heading>Ola mundo 3</Heading>
-            <Heading>Ola mundo 4</Heading>
             <p>Sejam bem vindos ao meu primeiro app pelo react</p>
         </>);
 }

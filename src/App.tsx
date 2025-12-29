@@ -7,7 +7,10 @@ export function App() {
     //o tsx não retorna mais de um elemento, ele precisa estar com um elemento pai, por exemplo a div, porem pode ser <></> vazio
     return (
         <>
-            <Heading/>
+            <Heading>Ola mundo 1</Heading>
+            <Heading>Ola mundo 2</Heading>
+            <Heading>Ola mundo 3</Heading>
+            <Heading>Ola mundo 4</Heading>
             <p>Sejam bem vindos ao meu primeiro app pelo react</p>
         </>);
 }

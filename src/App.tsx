@@ -5,6 +5,7 @@ import { Container } from './components/Container';
 import { Heading } from './components/Heading';
 import { Logo } from './components/Logo';
 import { Menu } from './components/Menu';
+import { CountDown } from './components/CountDown';
 
 export function App() {
     //o tsx não retorna mais de um elemento, ele precisa estar com um elemento pai, por exemplo a div, porem pode ser <></> vazio
@@ -19,7 +20,7 @@ export function App() {
         </Container>
 
         <Container>
-            <Heading>FORM</Heading>
+            <CountDown/>
         </Container>
 
         <Container>

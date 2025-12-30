@@ -1,0 +1,6 @@
+.container{
+    font-size: clamp(8rem, 30vw, 16rem); /*Serve para tornar responsivel, 8rem é o minimo e o maximo é 16rem*/
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.5;
+}

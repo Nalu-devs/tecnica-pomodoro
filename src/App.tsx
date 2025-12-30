@@ -1,33 +1,27 @@
 import './styles/theme.css';
 import './styles/global.css';
+import { Container } from './components/container';
+import { Heading } from './components/Heading';
 
 export function App() {
     //o tsx não retorna mais de um elemento, ele precisa estar com um elemento pai, por exemplo a div, porem pode ser <></> vazio
     return (
         <>
-        <div className='container'>
-            <div className='content'>
-                <section>LOGO</section>
-            </div>
-        </div>
+        <Container>
+            <Heading>LOGO</Heading>
+        </Container>
 
-        <div className='container'>
-            <div className='content'>
-                <section>MENU</section>
-            </div>
-        </div>
+        <Container>
+            <Heading>MENU</Heading>
+        </Container>
 
-        <div className='container'>
-            <div className='content'>
-                <section>FORM</section>
-            </div>
-        </div>
+        <Container>
+            <Heading>FORM</Heading>
+        </Container>
 
-        <div className='container'>
-            <div className='content'>
-                <section>FOOTER</section>
-            </div>
-        </div>
+        <Container>
+            <Heading>FOOTER</Heading>
+        </Container>
         </>);
 }
 // export default App; dessa forma o nome do import no main pode ser qualquer um por isso é melhor a outra opção abaixo:

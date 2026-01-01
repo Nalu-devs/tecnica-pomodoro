@@ -5,6 +5,7 @@ import { Container } from './components/Container';
 import { Logo } from './components/Logo';
 import { Menu } from './components/Menu';
 import { CountDown } from './components/CountDown';
+import { Input } from './components/Input';
 
 export function App() {
     //o tsx não retorna mais de um elemento, ele precisa estar com um elemento pai, por exemplo a div, porem pode ser <></> vazio
@@ -25,8 +26,7 @@ export function App() {
         <Container>
             <form action="" className='form'>
                 <div className='formRow'>
-                    <label htmlFor="">task</label>
-                    <input id='meuInput' type="text" />
+                    <Input id="meuInput" type="text"/>
                 </div>
 
                 <div className='formRow'>

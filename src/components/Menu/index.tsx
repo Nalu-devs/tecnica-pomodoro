@@ -1,6 +1,6 @@
 import { HistoryIcon, HomeIcon, SettingsIcon, SunMoonIcon } from 'lucide-react';
 import styles from './styles.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type EscolherTema = 'dark' | 'light';
 
@@ -17,8 +17,21 @@ export function Menu(){
         } 
     )
 
-    // document.documentElement.setAttribute('data-theme',theme); isso causa um efeito colateral na pagina e deve ser evitado usando outro Use, o useEfect
+    // document.documentElement.setAttribute('data-theme',theme); isso causa um efeito colateral na pagina e deve ser evitado usando outro Use, o useEffect
         }
+
+    // useEffect(() => {
+    //     console.log('useEffect sem dependencias (array)', Date.now());
+    // }) Ele executa quando a tela atualiza, fazendo assim todo esse componente index.tsx recarregar de novo na tela. Nesse caso toda vez que apertamos no link de tema ele executa
+
+    // useEffect(() => {
+    //     console.log('useEffect com array sem dependencias', Date.now());
+    // }, []) Ele executa somente quando a pagina carrega, se apertar no link de tema não executa
+
+    useEffect(() => {
+        console.log('Thema mudou', theme ,Date.now());
+        document.documentElement.setAttribute('data-theme',theme);
+    }, [theme]) //Ele só executa quando o valor da dependencia mudar
 
     return(
         <nav className={styles.menu}>

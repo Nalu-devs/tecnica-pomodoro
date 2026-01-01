@@ -7,6 +7,8 @@ import { Menu } from './components/Menu';
 import { CountDown } from './components/CountDown';
 import { Input } from './components/Input';
 import { Cycles } from './components/Cycles';
+import { Button } from './components/Button';
+import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
 
 export function App() {
     //o tsx não retorna mais de um elemento, ele precisa estar com um elemento pai, por exemplo a div, porem pode ser <></> vazio
@@ -39,7 +41,8 @@ export function App() {
                 </div>
 
                 <div className='formRow'>
-                    <button>Enviar</button>
+                    <Button icon={<PlayCircleIcon/>} color='green'/>
+                    <Button icon={<StopCircleIcon/>} color='red'/>
                 </div>
             </form>
         </Container>

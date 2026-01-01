@@ -1,3 +1,4 @@
+import styles from './styles.module.css';
 import type React from "react";
 
 type Input = {
@@ -16,7 +17,7 @@ export function Input({id, labelText, type, ...rest}: Input){
         {/* Condicional simples de uma linha = condição ? 'verdadeiro' : 'falso' */}
         {/* Tambem podemos remover o termo falso, caso seja vazio '', usando = condição && 'exibe isso se for verdadeiro' */}
         {labelText && <label htmlFor={id}>{labelText}</label>} {/*Nessa linha falamos que se o labelText existir o texto dele é exibido na tela, se não retorna vazio */}
-            <input id={id} type={type} {...rest}/>
+            <input className={styles.input} id={id} type={type} {...rest}/>
         </>
     );
 }

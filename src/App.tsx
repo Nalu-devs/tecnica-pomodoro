@@ -6,6 +6,7 @@ import { Logo } from './components/Logo';
 import { Menu } from './components/Menu';
 import { CountDown } from './components/CountDown';
 import { Input } from './components/Input';
+import { Cycles } from './components/Cycles';
 
 export function App() {
     //o tsx não retorna mais de um elemento, ele precisa estar com um elemento pai, por exemplo a div, porem pode ser <></> vazio
@@ -34,8 +35,7 @@ export function App() {
                 </div>
 
                 <div className='formRow'>
-                    <p>Ciclo</p>
-                    <p>0 0 0 0 0 0 0</p>
+                    <Cycles/>
                 </div>
 
                 <div className='formRow'>

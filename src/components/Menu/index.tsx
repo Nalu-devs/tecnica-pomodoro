@@ -10,6 +10,14 @@ export function Menu(){
 
     function mudarTheme(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>){
         event.preventDefault(); //impede que a pagina va para o lugar dela, nesse caso impede que va para "#"
+        
+        setTheme( prevTheme => {
+            const proximoTheme = prevTheme === 'dark' ? 'light' : 'dark'
+            return proximoTheme;
+        } 
+    )
+
+    // document.documentElement.setAttribute('data-theme',theme); isso causa um efeito colateral na pagina e deve ser evitado usando outro Use, o useEfect
         }
 
     return(

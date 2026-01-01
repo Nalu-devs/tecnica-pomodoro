@@ -13,6 +13,7 @@ import { Footer } from './components/Footer';
 
 export function App() {
     //o tsx não retorna mais de um elemento, ele precisa estar com um elemento pai, por exemplo a div, porem pode ser <></> vazio
+    // O useStates serve para criar uma função que quando for alterada e os campos tiverem essa função todos eles mudem, isso evita que o programa tenha um efeito colateral
     return (
         <>
         <Container>

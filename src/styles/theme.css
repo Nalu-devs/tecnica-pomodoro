@@ -9,8 +9,10 @@
     --gray-800: #181f2e;
     --gray-900: #0a0f1a;
 
-    --primary-light: #ffb3c6;
-    --primary: #ea638c;
+    --background: #9d8189;
+
+    --primary-light: #f4acb7;
+    --primary: #ffcad4;
     --primary-dark: #fb6f92;
 
     --link-color: #10b981;
@@ -46,6 +48,10 @@
     --gray-700: #aab3cc;
     --gray-800: #cdd3e1;
     --gray-900: #e6e9f0;
+
+    --background: #ffe5d9;
+
+    --primary: #da627d;
 
     --text-default: #0a0f1a;
     --text-muted: #272f43;

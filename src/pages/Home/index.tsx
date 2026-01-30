@@ -7,11 +7,13 @@ import { MainTemplate } from "../../templates/MainTemplates";
 type HomeProps = {
     state: TaskStateModel,
     setState: React.Dispatch<React.SetStateAction<TaskStateModel>>;
+    currentPage?: 'home' | 'tasks';
+    setCurrentPage?: (page: 'home' | 'tasks') => void;
 }
 
-export function Home({ state, setState }: HomeProps) {
+export function Home({ state, setState, currentPage = 'home', setCurrentPage = () => {} }: HomeProps) {
     return (
-        <MainTemplate>
+        <MainTemplate currentPage={currentPage} setCurrentPage={setCurrentPage}>
             <Container>
                 <CountDown state={state} setState={setState} />
             </Container>

@@ -7,9 +7,11 @@ import { MainTemplate } from "../../templates/MainTemplates";
 type TaskPageProps = {
     state: TaskStateModel,
     setState: React.Dispatch<React.SetStateAction<TaskStateModel>>;
+    currentPage?: 'home' | 'tasks';
+    setCurrentPage?: (page: 'home' | 'tasks') => void;
 }
 
-export function TaskPage({ state, setState }: TaskPageProps) {
+export function TaskPage({ state, setState, currentPage = 'tasks', setCurrentPage = () => {} }: TaskPageProps) {
     const handleAddTask = (newTask: Omit<TaskModel, 'id' | 'startDate' | 'completeDate' | 'interruptDate'>) => {
         const task: TaskModel = {
             ...newTask,
@@ -26,7 +28,7 @@ export function TaskPage({ state, setState }: TaskPageProps) {
     };
 
     return (
-        <MainTemplate>
+        <MainTemplate currentPage={currentPage} setCurrentPage={setCurrentPage}>
             <Container>
                 <h2>Cadastrar Nova Tarefa</h2>
                 <TaskRegistration onAddTask={handleAddTask} />

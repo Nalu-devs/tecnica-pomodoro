@@ -1,10 +1,15 @@
-import { HistoryIcon, HomeIcon, MoonIcon, SettingsIcon, SunIcon } from 'lucide-react';
+import { HistoryIcon, HomeIcon, MoonIcon, SettingsIcon, SunIcon, ListTodoIcon } from 'lucide-react';
 import styles from './styles.module.css';
 import { useState, useEffect } from 'react';
 
 type EscolherTema = 'dark' | 'light';
 
-export function Menu(){
+type MenuProps = {
+    currentPage: 'home' | 'tasks';
+    setCurrentPage: (page: 'home' | 'tasks') => void;
+}
+
+export function Menu({ currentPage, setCurrentPage }: MenuProps){
 
     const [theme, setTheme] = useState<EscolherTema>(() =>{
         const stogeTheme = localStorage.getItem('theme') as EscolherTema || 'dark';
@@ -43,8 +48,24 @@ export function Menu(){
 
     return(
         <nav className={styles.menu}>
-            <a href="#" aria-label='Ir para a home' title="Ir para a home" className={styles.menuLink}>
+            <a 
+                href="#home" 
+                onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}
+                aria-label='Ir para a home' 
+                title="Ir para a home" 
+                className={`${styles.menuLink} ${currentPage === 'home' ? styles.active : ''}`}
+            >
                 <HomeIcon/>
+            </a>
+            
+            <a 
+                href="#tasks"
+                onClick={(e) => { e.preventDefault(); setCurrentPage('tasks'); }}
+                aria-label='Tarefas' 
+                title="Tarefas" 
+                className={`${styles.menuLink} ${currentPage === 'tasks' ? styles.active : ''}`}
+            >
+                <ListTodoIcon/>
             </a>
             
             <a href="#" aria-label='Hitórico de navegação' title="Hitórico de navegação" className={styles.menuLink}>

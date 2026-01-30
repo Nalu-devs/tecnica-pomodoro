@@ -26,22 +26,14 @@ export function App() {
     const renderPage = () => {
         switch (currentPage) {
             case 'tasks':
-                return <TaskPage state={state} setState={setState} />;
+                return <TaskPage state={state} setState={setState} currentPage={currentPage} setCurrentPage={setCurrentPage} />;
             default:
-                return <Home state={state} setState={setState} />;
+                return <Home state={state} setState={setState} currentPage={currentPage} setCurrentPage={setCurrentPage} />;
         }
     };
 
     return (
-        <div>
-            <nav style={{ padding: '1rem', borderBottom: '1px solid #ccc', marginBottom: '2rem' }}>
-                <a href="#pomodoro" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }} style={{ marginRight: '1rem', padding: '0.5rem 1rem', textDecoration: 'none', color: '#333', fontWeight: 'bold' }}>
-                    🏠 Pomodoro
-                </a>
-                <a href="#tasks" onClick={(e) => { e.preventDefault(); setCurrentPage('tasks'); }} style={{ padding: '0.5rem 1rem', textDecoration: 'none', color: '#333', fontWeight: 'bold' }}>
-                    📝 Tarefas
-                </a>
-            </nav>
+        <div style={{ maxWidth: '100%', margin: '0 auto', padding: '0 1rem' }}>
             {renderPage()}
         </div>
     );

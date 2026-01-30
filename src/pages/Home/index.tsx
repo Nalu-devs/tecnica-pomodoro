@@ -1,9 +1,7 @@
 import { Container } from "../../components/Container";
 import { CountDown } from "../../components/CountDown";
-import { MainForm } from "../../components/MainForm";
-import { TaskRegistration } from "../../components/TaskRegistration";
+import { Cycles } from "../../components/Cycles";
 import type { TaskStateModel } from "../../models/TaskStateModel";
-import type { TaskModel } from "../../models/TaskModel";
 import { MainTemplate } from "../../templates/MainTemplates";
 
 type HomeProps = {
@@ -12,21 +10,6 @@ type HomeProps = {
 }
 
 export function Home({ state, setState }: HomeProps) {
-    const handleAddTask = (newTask: Omit<TaskModel, 'id' | 'startDate' | 'completeDate' | 'interruptDate'>) => {
-        const task: TaskModel = {
-            ...newTask,
-            id: Date.now().toString(),
-            startDate: Date.now(),
-            completeDate: null,
-            interruptDate: null
-        };
-
-        setState(prevState => ({
-            ...prevState,
-            tasks: [...prevState.tasks, task]
-        }));
-    };
-
     return (
         <MainTemplate>
             <Container>
@@ -34,12 +17,15 @@ export function Home({ state, setState }: HomeProps) {
             </Container>
 
             <Container>
-                <TaskRegistration onAddTask={handleAddTask} />
+                <Cycles currentCycle={state.currentCycle} />
             </Container>
 
-            <Container>
-                <MainForm state={state} />
-            </Container>
+            {state.activeTask && (
+                <Container>
+                    <h3>Tarefa Atual</h3>
+                    <p><strong>{state.activeTask.name}</strong></p>
+                </Container>
+            )}
         </MainTemplate>
     );
 }

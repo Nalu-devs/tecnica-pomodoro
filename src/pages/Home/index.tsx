@@ -11,7 +11,7 @@ type HomeProps = {
     setState: React.Dispatch<React.SetStateAction<TaskStateModel>>;
 }
 
-export function Home({ setState }: HomeProps) {
+export function Home({ state, setState }: HomeProps) {
     const handleAddTask = (newTask: Omit<TaskModel, 'id' | 'startDate' | 'completeDate' | 'interruptDate'>) => {
         const task: TaskModel = {
             ...newTask,
@@ -30,7 +30,7 @@ export function Home({ setState }: HomeProps) {
     return (
         <MainTemplate>
             <Container>
-                <CountDown />
+                <CountDown state={state} setState={setState} />
             </Container>
 
             <Container>
@@ -38,7 +38,7 @@ export function Home({ setState }: HomeProps) {
             </Container>
 
             <Container>
-                <MainForm />
+                <MainForm state={state} />
             </Container>
         </MainTemplate>
     );

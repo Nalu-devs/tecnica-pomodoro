@@ -14,7 +14,7 @@ const initialState: TaskStateModel = {
     config:{
         workTime: 25,
         shortBreakTime: 5,
-        longBreakTime: 15,
+        longBreakTime: 10,
     },
 };
 

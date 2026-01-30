@@ -13,30 +13,38 @@
 }
 
 .controls{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
+    width: 100%;
+    max-width: 400px;
 }
 
 .button{
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
+    padding: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
     border: 2px solid #333;
-    background: #fff;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
     color: #333;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .button:hover{
-    background: #333;
+    background: linear-gradient(145deg, #333, #555);
     color: #fff;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .button:active{
-    transform: translateY(0);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

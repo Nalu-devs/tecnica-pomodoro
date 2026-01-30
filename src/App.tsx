@@ -35,12 +35,12 @@ export function App() {
     return (
         <div>
             <nav style={{ padding: '1rem', borderBottom: '1px solid #ccc', marginBottom: '2rem' }}>
-                <button onClick={() => setCurrentPage('home')} style={{ marginRight: '1rem', padding: '0.5rem 1rem' }}>
+                <a href="#pomodoro" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }} style={{ marginRight: '1rem', padding: '0.5rem 1rem', textDecoration: 'none', color: '#333', fontWeight: 'bold' }}>
                     🏠 Pomodoro
-                </button>
-                <button onClick={() => setCurrentPage('tasks')} style={{ padding: '0.5rem 1rem' }}>
+                </a>
+                <a href="#tasks" onClick={(e) => { e.preventDefault(); setCurrentPage('tasks'); }} style={{ padding: '0.5rem 1rem', textDecoration: 'none', color: '#333', fontWeight: 'bold' }}>
                     📝 Tarefas
-                </button>
+                </a>
             </nav>
             {renderPage()}
         </div>

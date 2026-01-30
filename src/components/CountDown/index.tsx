@@ -103,18 +103,18 @@ export function CountDown({ state, setState }: CountDownProps){
             <div className={styles.controls}>
                 {!isRunning ? (
                     <button onClick={handleStart} className={styles.button}>
-                        Iniciar
+                        ▶️ Iniciar
                     </button>
                 ) : (
                     <button onClick={handlePause} className={styles.button}>
-                        Pausar
+                        ⏸️ Pausar
                     </button>
                 )}
                 <button onClick={handleReset} className={styles.button}>
-                    Resetar
+                    🔄 Resetar
                 </button>
                 <button onClick={handleNextCycle} className={styles.button}>
-                    Próximo Ciclo
+                    ⏭️ Próximo Ciclo
                 </button>
             </div>
         </div>

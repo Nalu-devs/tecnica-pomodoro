@@ -2,8 +2,13 @@ import { PlayCircleIcon } from "lucide-react";
 import { Button } from "../Button";
 import { Cycles } from "../Cycles";
 import { Input } from "../Input";
+import type { TaskStateModel } from "../../models/TaskStateModel";
 
-export function MainForm(){
+type MainFormProps = {
+    state: TaskStateModel;
+}
+
+export function MainForm({ state }: MainFormProps){
     return(
         <form action="" className='form'>
                 <div className='formRow'>
@@ -12,11 +17,11 @@ export function MainForm(){
                 </div>
 
                 <div className='formRow'>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>Tarefa atual: {state.activeTask?.name || 'Nenhuma tarefa ativa'}</p>
                 </div>
 
                 <div className='formRow'>
-                    <Cycles/>
+                    <Cycles currentCycle={state.currentCycle}/>
                 </div>
 
                 <div className='formRow'>

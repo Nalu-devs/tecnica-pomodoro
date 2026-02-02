@@ -14,10 +14,16 @@
     color: var(--text-over-primary);
     border-radius: 10px;
     margin-top: 2.6rem;
+    transition: all 0.2s ease;
 }
 
 .menuLink:hover{
     filter: brightness(90%)
+}
+
+.menuLink.active{
+    background-color: var(--accent);
+    box-shadow: 0 0 20px rgba(var(--accent-rgb, 0, 123, 255), 0.3);
 }
 
 .menuLink svg{

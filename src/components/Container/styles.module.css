@@ -5,8 +5,20 @@
 .container{
     max-width: 98rem;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .content{
-    margin: 3.2rem;
+    margin: 3.2rem 0;
+}
+
+@media (max-width: 768px) {
+    .container{
+        max-width: 100%;
+        padding: 0 0.5rem;
+    }
+    
+    .content{
+        margin: 2rem 0;
+    }
 }

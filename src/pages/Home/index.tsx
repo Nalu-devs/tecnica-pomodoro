@@ -9,13 +9,33 @@ type HomeProps = {
     setState: React.Dispatch<React.SetStateAction<TaskStateModel>>;
     currentPage?: 'home' | 'tasks';
     setCurrentPage?: (page: 'home' | 'tasks') => void;
+    isTimerRunning?: boolean;
+    onStartTimer?: () => void;
+    onPauseTimer?: () => void;
+    onResetTimer?: () => void;
 }
 
-export function Home({ state, setState, currentPage = 'home', setCurrentPage = () => {} }: HomeProps) {
+export function Home({ 
+    state, 
+    setState, 
+    currentPage = 'home', 
+    setCurrentPage = () => {},
+    isTimerRunning = false,
+    onStartTimer = () => {},
+    onPauseTimer = () => {},
+    onResetTimer = () => {}
+}: HomeProps) {
     return (
         <MainTemplate currentPage={currentPage} setCurrentPage={setCurrentPage}>
             <Container>
-                <CountDown state={state} setState={setState} />
+                <CountDown 
+                    state={state} 
+                    setState={setState} 
+                    isTimerRunning={isTimerRunning}
+                    onStartTimer={onStartTimer}
+                    onPauseTimer={onPauseTimer}
+                    onResetTimer={onResetTimer}
+                />
             </Container>
 
             <Container>

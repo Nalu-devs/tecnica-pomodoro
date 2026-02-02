@@ -1,47 +1,23 @@
 import styles from './styles.module.css';
-import { useEffect, useState } from 'react';
 import type { TaskStateModel } from '../../models/TaskStateModel';
 
 type CountDownProps = {
     state: TaskStateModel;
     setState: React.Dispatch<React.SetStateAction<TaskStateModel>>;
+    isTimerRunning?: boolean;
+    onStartTimer?: () => void;
+    onPauseTimer?: () => void;
+    onResetTimer?: () => void;
 }
 
-export function CountDown({ state, setState }: CountDownProps){
-    const [isRunning, setIsRunning] = useState(false);
-
-    useEffect(() => {
-        let interval: number | null = null;
-
-        if (isRunning && state.secondsRemaining > 0) {
-            interval = setInterval(() => {
-                setState(prevState => {
-                    const newSeconds = prevState.secondsRemaining - 1;
-                    
-                    if (newSeconds === 0) {
-                        setIsRunning(false);
-                        return {
-                            ...prevState,
-                            secondsRemaining: newSeconds,
-                            formattedSecondsRemaining: formatTime(newSeconds)
-                        };
-                    }
-
-                    return {
-                        ...prevState,
-                        secondsRemaining: newSeconds,
-                        formattedSecondsRemaining: formatTime(newSeconds)
-                    };
-                });
-            }, 1000);
-        } else if (state.secondsRemaining === 0) {
-            setIsRunning(false);
-        }
-
-        return () => {
-            if (interval) clearInterval(interval);
-        };
-    }, [isRunning, state.secondsRemaining, setState]);
+export function CountDown({ 
+    state, 
+    setState, 
+    isTimerRunning = false,
+    onStartTimer = () => {},
+    onPauseTimer = () => {},
+    onResetTimer = () => {}
+}: CountDownProps){
 
     const formatTime = (seconds: number): string => {
         const minutes = Math.floor(seconds / 60);
@@ -64,24 +40,18 @@ export function CountDown({ state, setState }: CountDownProps){
                 formattedSecondsRemaining: formatTime(totalSeconds)
             }));
         }
-        setIsRunning(true);
+        onStartTimer();
     };
 
     const handlePause = () => {
-        setIsRunning(false);
+        onPauseTimer();
     };
 
     const handleReset = () => {
-        setIsRunning(false);
-        setState(prevState => ({
-            ...prevState,
-            secondsRemaining: 0,
-            formattedSecondsRemaining: '00:00'
-        }));
+        onResetTimer();
     };
 
     const handleNextCycle = () => {
-        setIsRunning(false);
         const nextCycle = (state.currentCycle + 1) % 8;
         const cycleOrder: (keyof TaskStateModel['config'])[] = ['workTime', 'shortBreakTime', 'workTime', 'shortBreakTime', 'workTime', 'shortBreakTime', 'workTime', 'longBreakTime'];
         const nextType = cycleOrder[nextCycle];
@@ -95,13 +65,25 @@ export function CountDown({ state, setState }: CountDownProps){
         }));
     };
 
+    const getCycleType = () => {
+        const cycleOrder: (keyof TaskStateModel['config'])[] = ['workTime', 'shortBreakTime', 'workTime', 'shortBreakTime', 'workTime', 'shortBreakTime', 'workTime', 'longBreakTime'];
+        return cycleOrder[state.currentCycle] || 'workTime';
+    };
+
+    const cycleType = getCycleType();
+
     return(
         <div className={styles.container}>
-            <div className={styles.timer}>
+            <div className={`${styles.timer} ${styles[cycleType]}`}>
                 {state.formattedSecondsRemaining}
             </div>
+            <div className={styles.cycleInfo}>
+                <span className={styles.cycleLabel}>
+                    {cycleType === 'workTime' ? '🍅 Foco' : cycleType === 'shortBreakTime' ? '☕ Pausa Curta' : '🌊 Pausa Longa'}
+                </span>
+            </div>
             <div className={styles.controls}>
-                {!isRunning ? (
+                {!isTimerRunning ? (
                     <button onClick={handleStart} className={styles.button}>
                         ▶️ Iniciar
                     </button>

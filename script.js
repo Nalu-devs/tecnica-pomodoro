@@ -218,18 +218,21 @@ function renderTasks() {
         if (task.id === state.activeTaskId) li.classList.add('active');
         if (task.completed) li.classList.add('completed');
         
-        li.innerHTML = `
-            <span>${task.text}</span>
-            <button class="task-delete">×</button>
-        `;
-        
-        li.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('task-delete')) {
-                selectTask(task.id);
-            }
+         const span = document.createElement('span');
+        span.textContent = task.text;
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'task-delete';
+        deleteBtn.textContent = '×';
+
+        li.appendChild(span);
+        li.appendChild(deleteBtn);
+
+        li.addEventListener('click', () => {
+            selectTask(task.id);
         });
-        
-        li.querySelector('.task-delete').addEventListener('click', (e) => {
+
+        deleteBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             deleteTask(task.id);
         });

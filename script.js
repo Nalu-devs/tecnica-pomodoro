@@ -225,8 +225,13 @@ function renderTasks() {
         deleteBtn.className = 'task-delete';
         deleteBtn.textContent = '×';
 
-        li.appendChild(span);
+         li.appendChild(span);
         li.appendChild(deleteBtn);
+
+        span.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleTaskComplete(task.id);
+        });
 
         li.addEventListener('click', () => {
             selectTask(task.id);

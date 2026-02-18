@@ -7,7 +7,9 @@ const state = {
         workTime: 25,
         shortBreakTime: 5,
         longBreakTime: 15
-    }
+    },
+    tasks: JSON.parse(localStorage.getItem('pomodoroTasks')) || [],
+    activeTaskId: null
 };
 
 const cycleOrder = [
@@ -31,7 +33,11 @@ const elements = {
     nextBtn: document.getElementById('nextBtn'),
     workTime: document.getElementById('workTime'),
     shortBreakTime: document.getElementById('shortBreakTime'),
-    longBreakTime: document.getElementById('longBreakTime')
+    longBreakTime: document.getElementById('longBreakTime'),
+    taskInput: document.getElementById('taskInput'),
+    addTaskBtn: document.getElementById('addTaskBtn'),
+    taskList: document.getElementById('taskList'),
+    activeTask: document.getElementById('activeTask')
 };
 
 function formatTime(seconds) {
@@ -45,6 +51,9 @@ function getCurrentCycleTime() {
     if (currentCycleData.type === 'work') {
         return state.config.workTime * 60;
     } else {
+        if (state.currentCycle === 7) {
+            return state.config.longBreakTime * 60;
+        }
         return state.config.shortBreakTime * 60;
     }
 }
@@ -143,4 +152,106 @@ elements.workTime.addEventListener('change', updateConfig);
 elements.shortBreakTime.addEventListener('change', updateConfig);
 elements.longBreakTime.addEventListener('change', updateConfig);
 
+function saveTasks() {
+    localStorage.setItem('pomodoroTasks', JSON.stringify(state.tasks));
+}
+
+function addTask() {
+    const taskText = elements.taskInput.value.trim();
+    if (!taskText) return;
+    
+    const task = {
+        id: Date.now(),
+        text: taskText,
+        completed: false
+    };
+    
+    state.tasks.push(task);
+    elements.taskInput.value = '';
+    saveTasks();
+    renderTasks();
+}
+
+function deleteTask(id) {
+    state.tasks = state.tasks.filter(t => t.id !== id);
+    if (state.activeTaskId === id) {
+        state.activeTaskId = null;
+    }
+    saveTasks();
+    renderTasks();
+    updateActiveTaskDisplay();
+}
+
+function toggleTaskComplete(id) {
+    const task = state.tasks.find(t => t.id === id);
+    if (task) {
+        task.completed = !task.completed;
+        saveTasks();
+        renderTasks();
+    }
+}
+
+function selectTask(id) {
+    state.activeTaskId = id;
+    renderTasks();
+    updateActiveTaskDisplay();
+}
+
+function updateActiveTaskDisplay() {
+    if (state.activeTaskId) {
+        const task = state.tasks.find(t => t.id === state.activeTaskId);
+        if (task) {
+            elements.activeTask.textContent = `Tarefa atual: ${task.text}`;
+            elements.activeTask.classList.add('show');
+            return;
+        }
+    }
+    elements.activeTask.classList.remove('show');
+}
+
+function renderTasks() {
+    elements.taskList.innerHTML = '';
+    
+    state.tasks.forEach(task => {
+        const li = document.createElement('li');
+        li.className = 'task-item';
+        if (task.id === state.activeTaskId) li.classList.add('active');
+        if (task.completed) li.classList.add('completed');
+        
+         const span = document.createElement('span');
+        span.textContent = task.text;
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'task-delete';
+        deleteBtn.textContent = '×';
+
+         li.appendChild(span);
+        li.appendChild(deleteBtn);
+
+        span.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleTaskComplete(task.id);
+        });
+
+        li.addEventListener('click', () => {
+            selectTask(task.id);
+        });
+
+        deleteBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            deleteTask(task.id);
+        });
+        
+        elements.taskList.appendChild(li);
+    });
+    
+    updateActiveTaskDisplay();
+}
+
+elements.addTaskBtn.addEventListener('click', addTask);
+elements.taskInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') addTask();
+});
+
+renderTasks();
 updateDisplay();

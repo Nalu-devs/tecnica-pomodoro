@@ -282,6 +282,7 @@ function skipToNextWork() {
     updateDisplay();
 }
 
+
 function updateConfig() {
     state.config.workTime = parseInt(elements.workTime.value) || 25;
     state.config.shortBreakTime = parseInt(elements.shortBreakTime.value) || 5;

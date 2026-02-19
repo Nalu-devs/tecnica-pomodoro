@@ -24,10 +24,31 @@ body {
     text-align: center;
 }
 
+header {
+    position: relative;
+}
+
 header h1 {
     color: #333;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     font-size: 2rem;
+}
+
+.theme-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.pomo-count {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
 }
 
 .timer-container {
@@ -183,4 +204,49 @@ footer {
         flex-direction: column;
         align-items: center;
     }
+}
+
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+body.dark-mode .container {
+    background: #2d2d44;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode header h1,
+body.dark-mode .config h3,
+body.dark-mode .tasks-section h3 {
+    color: #fff;
+}
+
+body.dark-mode .cycle-type,
+body.dark-mode .config-grid label,
+body.dark-mode footer {
+    color: #aaa;
+}
+
+body.dark-mode .config,
+body.dark-mode .tasks-section {
+    background: #1a1a2e;
+}
+
+body.dark-mode .config-grid input,
+body.dark-mode .task-input input {
+    background: #2d2d44;
+    border-color: #444;
+    color: white;
+}
+
+body.dark-mode .task-item {
+    background: #2d2d44;
+}
+
+body.dark-mode .task-item:hover {
+    background: #3d3d5c;
+}
+
+body.dark-mode .pomo-count {
+    color: #aaa;
 }

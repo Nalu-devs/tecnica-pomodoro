@@ -268,12 +268,14 @@ function nextCycle() {
 
 function skipToNextWork() {
     pause();
-    while (state.currentCycle < 7 && cycleOrder[state.currentCycle].type === 'break') {
-        state.currentCycle++;
+    // Avança sempre para o próximo ciclo para saltar a pausa seguinte.
+    state.currentCycle = (state.currentCycle + 1) % 8;
+
+    // Se o novo ciclo ainda for uma pausa (não é possível com a configuração atual, mas torna a função mais robusta), continua a avançar.
+    while (cycleOrder[state.currentCycle].type === 'break') {
+        state.currentCycle = (state.currentCycle + 1) % 8;
     }
-    if (state.currentCycle === 7 && cycleOrder[state.currentCycle].type === 'break') {
-        state.currentCycle = 0;
-    }
+    
     state.totalSeconds = getCurrentCycleTime();
     state.secondsRemaining = state.totalSeconds;
     elements.progressFill.style.width = '0%';

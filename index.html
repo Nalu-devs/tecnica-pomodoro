@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Técnica Pomodoro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍅 Técnica Pomodoro</h1>
+        </header>
+
+        <main>
+            <div class="timer-container">
+                <div class="timer" id="timer">25:00</div>
+                <div class="cycle-type" id="cycleType">Tempo de Trabalho</div>
+            </div>
+
+            <div class="cycles-indicator" id="cyclesIndicator">
+                <span class="cycle-dot active" data-cycle="0"></span>
+                <span class="cycle-dot" data-cycle="1"></span>
+                <span class="cycle-dot" data-cycle="2"></span>
+                <span class="cycle-dot" data-cycle="3"></span>
+                <span class="cycle-dot" data-cycle="4"></span>
+                <span class="cycle-dot" data-cycle="5"></span>
+                <span class="cycle-dot" data-cycle="6"></span>
+                <span class="cycle-dot" data-cycle="7"></span>
+            </div>
+
+            <div class="controls">
+                <button id="startBtn" class="btn btn-primary">▶ Iniciar</button>
+                <button id="pauseBtn" class="btn btn-secondary" style="display: none;">⏸ Pausar</button>
+                <button id="resetBtn" class="btn btn-secondary">🔄 Resetar</button>
+                <button id="nextBtn" class="btn btn-secondary">⏭ Próximo Ciclo</button>
+            </div>
+
+            <div class="config">
+                <h3>Configurações (minutos)</h3>
+                <div class="config-grid">
+                    <label>
+                        Trabalho:
+                        <input type="number" id="workTime" value="25" min="1" max="60">
+                    </label>
+                    <label>
+                        Pausa Curta:
+                        <input type="number" id="shortBreakTime" value="5" min="1" max="30">
+                    </label>
+                    <label>
+                        Pausa Longa:
+                        <input type="number" id="longBreakTime" value="15" min="1" max="60">
+                    </label>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>🍅 Pomodoro - Foque no que importa!</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -16,6 +16,9 @@
 
         <main>
             <div class="timer-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
                 <div class="timer" id="timer">25:00</div>
                 <div class="cycle-type" id="cycleType">Tempo de Trabalho</div>
             </div>
@@ -35,11 +38,11 @@
                 <button id="startBtn" class="btn btn-primary">▶ Iniciar</button>
                 <button id="pauseBtn" class="btn btn-secondary" style="display: none;">⏸ Pausar</button>
                 <button id="resetBtn" class="btn btn-secondary">🔄 Resetar</button>
-                <button id="nextBtn" class="btn btn-secondary">⏭ Próximo Ciclo</button>
+                <button id="skipBtn" class="btn btn-secondary">⏭ Pular</button>
             </div>
 
             <div class="config">
-                <h3>Configurações (minutos)</h3>
+                <h3>Configurações</h3>
                 <div class="config-grid">
                     <label>
                         Trabalho:
@@ -53,6 +56,38 @@
                         Pausa Longa:
                         <input type="number" id="longBreakTime" value="15" min="1" max="60">
                     </label>
+                </div>
+                <div class="config-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="autoStart" checked>
+                        Auto próximo ciclo
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="skipBreaks">
+                        Pular pausas
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="notifications" checked>
+                        Notificações
+                    </label>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <h3>📊 Estatísticas</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-value" id="todayCount">0</span>
+                        <span class="stat-label">Hoje</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="weekCount">0</span>
+                        <span class="stat-label">Esta Semana</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="streakCount">0</span>
+                        <span class="stat-label">Dias Seguidos</span>
+                    </div>
                 </div>
             </div>
         </main>

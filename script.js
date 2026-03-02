@@ -404,6 +404,7 @@ function start() {
                 }
                 state.dailyHistory[today]++;
                 localStorage.setItem('dailyHistory', JSON.stringify(state.dailyHistory));
+                renderWeeklyChart();
                 
                 // Reproduz som e envia notificação
                 playSound('end');
@@ -543,6 +544,7 @@ function toggleTheme() {
     state.darkMode = !state.darkMode;  // Inverte o estado
     localStorage.setItem('darkMode', state.darkMode);  // Salva preferência
     document.body.classList.toggle('dark-mode', state.darkMode);  // Aplica classe CSS
+    renderWeeklyChart();
 }
 
 // ============================================================
@@ -844,3 +846,4 @@ if (state.notifications && Notification.permission === "default") {
 // Renderiza tarefas salvas e exibe o estado inicial do timer
 renderTasks();
 updateDisplay();
+renderWeeklyChart();

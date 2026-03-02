@@ -36,6 +36,9 @@ const state = {
     todayPomodoros: parseInt(localStorage.getItem('todayPomodoros')) || 0,
     weekPomodoros: parseInt(localStorage.getItem('weekPomodoros')) || 0,
     
+    // Histórico de pomodoros por dia (objeto com data como chave)
+    dailyHistory: JSON.parse(localStorage.getItem('dailyHistory')) || {},
+    
     // Controle de sequência de dias (dias seguidos usando a técnica)
     lastDate: localStorage.getItem('lastDate') || new Date().toDateString(),
     streak: parseInt(localStorage.getItem('streak')) || 0,

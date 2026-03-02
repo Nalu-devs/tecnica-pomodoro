@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Técnica Pomodoro</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -88,6 +89,13 @@
                         <span class="stat-value" id="streakCount">0</span>
                         <span class="stat-label">Dias Seguidos</span>
                     </div>
+                </div>
+            </div>
+
+            <div class="chart-section">
+                <h3>📈 Produtividade Semanal</h3>
+                <div class="chart-container">
+                    <canvas id="weeklyChart"></canvas>
                 </div>
             </div>
         </main>

@@ -742,6 +742,91 @@ elements.notifications.addEventListener('change', () => {
 });
 
 // ============================================================
+// FUNÇÕES DO GRÁFICO DE PRODUTIVIDADE
+// ============================================================
+
+function getWeeklyData() {
+    const days = [];
+    const counts = [];
+    const today = new Date();
+    
+    // Get Monday of current week
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - ((today.getDay() + 6) % 7));
+    
+    const dayNames = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
+    
+    for (let i = 0; i < 7; i++) {
+        const date = new Date(monday);
+        date.setDate(monday.getDate() + i);
+        const dateStr = date.toDateString();
+        
+        days.push(dayNames[i]);
+        counts.push(state.dailyHistory[dateStr] || 0);
+    }
+    
+    return { days, counts };
+}
+
+let weeklyChart = null;
+
+function renderWeeklyChart() {
+    const ctx = document.getElementById('weeklyChart');
+    if (!ctx) return;
+    
+    const { days, counts } = getWeeklyData();
+    const isDark = state.darkMode;
+    const today = new Date();
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - ((today.getDay() + 6) % 7));
+    const todayIndex = Math.floor((today - monday) / (1000 * 60 * 60 * 24));
+    
+    const bgColors = days.map((_, i) => 
+        i === todayIndex ? '#e74c3c' : (isDark ? '#3498db' : '#2ecc71')
+    );
+    
+    if (weeklyChart) {
+        weeklyChart.destroy();
+    }
+    
+    weeklyChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: days,
+            datasets: [{
+                label: 'Pomodoros',
+                data: counts,
+                backgroundColor: bgColors,
+                borderRadius: 6,
+                borderSkipped: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: (ctx) => `${ctx.raw} pomodoro${ctx.raw !== 1 ? 's' : ''}`
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { stepSize: 1 },
+                    grid: { color: isDark ? '#444' : '#eee' }
+                },
+                x: {
+                    grid: { display: false }
+                }
+            }
+        }
+    });
+}
+
+// ============================================================
 // INICIALIZAÇÃO DA APLICAÇÃO
 // Código executado quando a página termina de carregar
 // ============================================================

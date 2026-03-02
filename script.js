@@ -397,6 +397,14 @@ function start() {
                 localStorage.setItem('todayPomodoros', state.todayPomodoros);
                 localStorage.setItem('weekPomodoros', state.weekPomodoros);
                 
+                // Atualiza histórico diário
+                const today = new Date().toDateString();
+                if (!state.dailyHistory[today]) {
+                    state.dailyHistory[today] = 0;
+                }
+                state.dailyHistory[today]++;
+                localStorage.setItem('dailyHistory', JSON.stringify(state.dailyHistory));
+                
                 // Reproduz som e envia notificação
                 playSound('end');
                 sendNotification('🍅 Pomodoro Completo!', 'Hora de descansar.');
